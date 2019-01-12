@@ -33,5 +33,16 @@ public class Jsonizer {
 		return obj;
 	}
 	
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	public void setReceivers(ArrayList<String> receivers) {
+		this.receiver = receivers;
+	}
+	
+	public void  setUserName(String userName) {
+		this.userName = userName;
+	}
 	
 }
