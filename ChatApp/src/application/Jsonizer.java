@@ -28,21 +28,24 @@ public class Jsonizer {
 		for (String name : receiver) {
 			rec.add(name);
 		}
-		obj.add("receiver", rec);
+		obj.add("receivers", rec);
 		
 		return obj;
 	}
 	
-	public void setEmail(String email) {
+	public Jsonizer setEmail(String email) {
 		this.email = email;
+		return this;
 	}
 	
-	public void setReceivers(ArrayList<String> receivers) {
+	public Jsonizer setReceivers(ArrayList<String> receivers) {
 		this.receiver = receivers;
+		return this;
 	}
 	
-	public void  setUserName(String userName) {
+	public Jsonizer setUserName(String userName) {
 		this.userName = userName;
+		return this;
 	}
 	
 }
