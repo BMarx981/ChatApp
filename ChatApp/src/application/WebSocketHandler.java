@@ -13,13 +13,18 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
 @ClientEndpoint
 public class WebSocketHandler {
 	CountDownLatch latch = new CountDownLatch(1);
+	private ChatController controller;
 	
 	private Session session;
 	
-	public WebSocketHandler(){
+	public WebSocketHandler(ChatController controller){
+		this.controller = controller;
 		String dest = "ws://127.0.0.1:8081";
 		try {
 			WebSocketContainer container = ContainerProvider.getWebSocketContainer();
@@ -50,9 +55,15 @@ public class WebSocketHandler {
 	}
 
 	@OnMessage
-	public void sendMessage(String str) {
+	public void sendMessage(Object obj) {
 		try {
-			session.getBasicRemote().sendText(str);
+			JsonObject jo = (JsonObject) obj;
+			JsonParser parser = new JsonParser();
+			JsonObject main = parser.parse(jo.toString()).getAsJsonObject();
+			String text = main.get("message").getAsString();
+//			session.getBasicRemote().sendText(str);
+			controller.ta.setText(text);
+			session.getBasicRemote().sendObject(jo);
 		} catch(Exception io) {
 			io.printStackTrace();
 		}

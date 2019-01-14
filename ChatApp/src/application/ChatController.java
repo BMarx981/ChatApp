@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -18,33 +20,31 @@ public class ChatController implements Initializable {
 	@FXML
 	TextField textfield = new TextField();
 	@FXML
-	ListView<String> list = new ListView<String>();
+	ListView<String> listView = new ListView<String>();
 	
 	private String user;
 	private String email;
-	private ArrayList<String> receivers;
+	private ArrayList<String> receivers = new ArrayList<String>();
 	private ArrayList<String> groups;
 	
 	WebSocketHandler wsh;
 	Jsonizer json = new Jsonizer();
+	ObservableList<String> receiversList = FXCollections.observableArrayList();
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		 wsh = new WebSocketHandler();
+		 wsh = new WebSocketHandler(this);
 		 user = "bmarx";
 		 email = "b.marx981@gmail.com";
-		 receivers = new ArrayList<String>();
 		 receivers.add("ravlvania");
 		 receivers.add("felixMarx");
+		 receiversList.addAll(receivers);
+		 listView.setItems(receiversList);
 		 json.setEmail(email).setUserName(user).setReceivers(receivers);
 	}
 
 	public void enterPressed(ActionEvent e) {
-		String jsonText = json.getJsonObject(textfield.getText()).toString();
-		wsh.sendMessage(jsonText);
-		StringBuilder sb = new StringBuilder(ta.getText());
-		sb.append(textfield.getText()).append("\n");
-		ta.setText(sb.toString());
+		wsh.sendMessage(json.getJsonObject(textfield.getText()));
 		textfield.setText("");
 	}
 }
