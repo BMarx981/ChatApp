@@ -14,7 +14,6 @@ import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 
 import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 
 @ClientEndpoint
 public class WebSocketHandler {
@@ -55,17 +54,20 @@ public class WebSocketHandler {
 	}
 
 	@OnMessage
-	public void sendMessage(Object obj) {
+	public void sendMessage(String str) {
 		try {
-			JsonObject jo = (JsonObject) obj;
-			JsonParser parser = new JsonParser();
-			JsonObject main = parser.parse(jo.toString()).getAsJsonObject();
-			String text = main.get("message").getAsString();
-//			session.getBasicRemote().sendText(str);
-			controller.ta.setText(text);
-			session.getBasicRemote().sendObject(jo);
+			session.getBasicRemote().sendText(str);
+//			StringBuilder sb = new StringBuilder(controller.ta.getText());
+//			controller.ta.setText(sb.append(getTextMessage(str)).append("\n").toString());
+			
 		} catch(Exception io) {
 			io.printStackTrace();
 		}
+//		return getTextMessage(str);
+	}
+	
+	private String getTextMessage(String message) {
+		Jsonizer json = new Jsonizer("b.marx981@gmail.com", "bmarx", controller.getReceivers());
+		return  json.getJsonObject(message).get("message").getAsString();
 	}
 }

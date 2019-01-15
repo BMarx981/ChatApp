@@ -4,6 +4,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+import com.google.gson.JsonObject;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -44,7 +46,18 @@ public class ChatController implements Initializable {
 	}
 
 	public void enterPressed(ActionEvent e) {
-		wsh.sendMessage(json.getJsonObject(textfield.getText()));
+		wsh.sendMessage(json.getJsonObject(textfield.getText()).toString());
+		addTextToArea(textfield.getText());
 		textfield.setText("");
+	}
+	
+	public ArrayList<String> getReceivers() {
+		return receivers;
+	}
+	
+	private void addTextToArea(String text) {
+		StringBuilder sb = new StringBuilder(ta.getText());
+		sb.append(textfield.getText()).append("\n");
+		ta.setText(sb.toString());
 	}
 }
