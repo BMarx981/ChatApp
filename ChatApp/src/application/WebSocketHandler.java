@@ -15,7 +15,7 @@ import javax.websocket.WebSocketContainer;
 
 import com.google.gson.JsonObject;
 
-@ClientEndpoint
+@ClientEndpoint(encoders = MessageEncoder.class, decoders = MessageDecoder.class)
 public class WebSocketHandler {
 	CountDownLatch latch = new CountDownLatch(1);
 	private ChatController controller;
@@ -63,7 +63,6 @@ public class WebSocketHandler {
 		} catch(Exception io) {
 			io.printStackTrace();
 		}
-//		return getTextMessage(str);
 	}
 	
 	private String getTextMessage(String message) {
