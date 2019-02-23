@@ -1,6 +1,5 @@
 package application;
 
-import java.io.StringReader;
 import java.util.Date;
 
 import javax.websocket.DecodeException;

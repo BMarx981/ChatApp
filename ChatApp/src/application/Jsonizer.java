@@ -33,6 +33,11 @@ public class Jsonizer {
 		return obj;
 	}
 	
+	public String getJsonAsString(String text) {
+		JsonObject obj = getJsonObject(text);
+		return obj.toString();
+	}
+	
 	public Jsonizer setEmail(String email) {
 		this.email = email;
 		return this;

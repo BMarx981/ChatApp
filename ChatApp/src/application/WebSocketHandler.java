@@ -13,7 +13,7 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 
-@ClientEndpoint(encoders = MessageEncoder.class, decoders = MessageDecoder.class)
+@ClientEndpoint()
 public class WebSocketHandler {
 	CountDownLatch latch = new CountDownLatch(1);
 	private ChatController controller;

@@ -1,5 +1,6 @@
 package application;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Message {
@@ -39,5 +40,10 @@ public class Message {
 
     public final void setReceived(final Date received) {
         this.received = received;
+    }
+    
+    public String getMessageAsString(String text) {
+    	Jsonizer json = new Jsonizer(email, sender, new ArrayList<String>());
+    	return json.getJsonAsString(text);
     }
 }

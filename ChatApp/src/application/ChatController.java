@@ -47,7 +47,11 @@ public class ChatController implements Initializable {
 	}
 
 	public void enterPressed(ActionEvent e) {
-		wsh.writeMessage(textfield.getText());
+		Message msg = new Message();
+		msg.setSender(user);
+		msg.setContent(textfield.getText());
+		msg.setEmail(email);
+		wsh.writeMessage(msg.getMessageAsString(textfield.getText()));
 		ta.setText(addTextToArea(textfield.getText(), ta.getText()));
 		textfield.setText("");
 	}
