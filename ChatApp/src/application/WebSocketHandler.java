@@ -13,8 +13,6 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 
-import com.google.gson.JsonObject;
-
 @ClientEndpoint(encoders = MessageEncoder.class, decoders = MessageDecoder.class)
 public class WebSocketHandler {
 	CountDownLatch latch = new CountDownLatch(1);
@@ -24,7 +22,7 @@ public class WebSocketHandler {
 	
 	public WebSocketHandler(ChatController controller){
 		this.controller = controller;
-		String dest = "ws://127.0.0.1:8081";
+		String dest = "ws://127.0.0.1:8080/";
 		try {
 			WebSocketContainer container = ContainerProvider.getWebSocketContainer();
 			container.connectToServer(this, new URI(dest));
@@ -46,7 +44,7 @@ public class WebSocketHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Closing a WebSocket due to " + reason.getReasonPhrase());
+		System.out.println("Closing WebSocket due to " + reason.getReasonPhrase());
 	}
 	
 	public CountDownLatch getLatch() {
@@ -54,15 +52,20 @@ public class WebSocketHandler {
 	}
 
 	@OnMessage
-	public void sendMessage(String str) {
+	public void receiveMessage(String str) {
+		controller.addTextToArea(str, controller.ta.getText());
+	}
+	
+	public void writeMessage(String str) {
 		try {
 			session.getBasicRemote().sendText(str);
-//			StringBuilder sb = new StringBuilder(controller.ta.getText());
-//			controller.ta.setText(sb.append(getTextMessage(str)).append("\n").toString());
-			
-		} catch(Exception io) {
-			io.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+	}
+	
+	public Session getSession() {
+		return this.session;
 	}
 	
 	private String getTextMessage(String message) {

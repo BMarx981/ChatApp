@@ -39,5 +39,10 @@ public class MessageDecoder implements Decoder.Text<Message> {
 	public boolean willDecode(final String s) {
 		return true;
 	}
+	
+	public String decodeAsString(String text) throws DecodeException {
+		String strObj = decode(text).toString();
+		return strObj;
+	}
 
 }

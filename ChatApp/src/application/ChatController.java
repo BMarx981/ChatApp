@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
-import com.google.gson.JsonObject;
+import javax.websocket.Session;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,6 +28,7 @@ public class ChatController implements Initializable {
 	private String email;
 	private ArrayList<String> receivers = new ArrayList<String>();
 	private ArrayList<String> groups;
+	private Session session;
 	
 	WebSocketHandler wsh;
 	Jsonizer json = new Jsonizer();
@@ -36,18 +37,18 @@ public class ChatController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		 wsh = new WebSocketHandler(this);
-		 user = "bmarx";
-		 email = "b.marx981@gmail.com";
-		 receivers.add("ravlvania");
-		 receivers.add("felixMarx");
+		 user = "aUser";
+		 email = "userEmail@gmail.com";
+		 receivers.add("usersFriend1");
+		 receivers.add("usersFriend2");
 		 receiversList.addAll(receivers);
 		 listView.setItems(receiversList);
 		 json.setEmail(email).setUserName(user).setReceivers(receivers);
 	}
 
 	public void enterPressed(ActionEvent e) {
-		wsh.sendMessage(json.getJsonObject(textfield.getText()).toString());
-		addTextToArea(textfield.getText());
+		wsh.writeMessage(textfield.getText());
+		ta.setText(addTextToArea(textfield.getText(), ta.getText()));
 		textfield.setText("");
 	}
 	
@@ -55,9 +56,9 @@ public class ChatController implements Initializable {
 		return receivers;
 	}
 	
-	private void addTextToArea(String text) {
-		StringBuilder sb = new StringBuilder(ta.getText());
-		sb.append(textfield.getText()).append("\n");
-		ta.setText(sb.toString());
+	public String addTextToArea(String text, String ta) {
+		StringBuilder sb = new StringBuilder(ta);
+		sb.append(text).append("\n");
+		return sb.toString();
 	}
 }

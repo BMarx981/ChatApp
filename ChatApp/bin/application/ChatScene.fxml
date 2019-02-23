@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="469.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ChatController">
+   <children>
+      <TextField fx:id="textfield" alignment="TOP_LEFT" layoutX="14.0" layoutY="403.0" onAction="#enterPressed" prefHeight="54.0" prefWidth="534.0" promptText="Enter message">
+         <cursor>
+            <Cursor fx:constant="TEXT" />
+         </cursor>
+      </TextField>
+      <TextArea fx:id="ta" layoutX="14.0" layoutY="28.0" prefHeight="365.0" prefWidth="395.0" />
+      <ListView fx:id="listView" layoutX="419.0" layoutY="28.0" prefHeight="365.0" prefWidth="127.0" />
+   </children>
+</AnchorPane>

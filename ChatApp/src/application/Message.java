@@ -6,6 +6,7 @@ public class Message {
 
     private String content;
     private String sender;
+    private String email;
     private Date received;
 
     public final String getContent() {
@@ -22,6 +23,14 @@ public class Message {
 
     public final void setSender(final String sender) {
         this.sender = sender;
+    }
+    
+    public final String getEmail() {
+    	return this.email;
+    }
+    
+    public final void setEmail(final String email) {
+    	this.email = email;
     }
 
     public final Date getReceived() {
