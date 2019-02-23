@@ -34,7 +34,7 @@ public class WebSocketHandler {
 	@OnOpen
 	public void onOpen(Session session) {
 		this.session = session;
-		System.out.println("Connected to server!@");
+		System.out.println("Connected to server!");
 	}
 	
 	@OnClose
@@ -58,6 +58,7 @@ public class WebSocketHandler {
 	
 	public void writeMessage(String str) {
 		try {
+			System.out.println(str);
 			session.getBasicRemote().sendText(str);
 		} catch (IOException e) {
 			e.printStackTrace();
