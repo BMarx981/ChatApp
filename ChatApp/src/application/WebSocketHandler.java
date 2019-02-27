@@ -13,7 +13,10 @@ import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
 
-@ClientEndpoint()
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+@ClientEndpoint(decoders= {MessageDecoder.class})
 public class WebSocketHandler {
 	CountDownLatch latch = new CountDownLatch(1);
 	private ChatController controller;
@@ -53,12 +56,11 @@ public class WebSocketHandler {
 
 	@OnMessage
 	public void receiveMessage(String str) {
-		controller.addTextToArea(str, controller.ta.getText());
+		controller.addTextToArea(extractMessage(str), controller.ta.getText());
 	}
 	
 	public void writeMessage(String str) {
 		try {
-			System.out.println(str);
 			session.getBasicRemote().sendText(str);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -72,5 +74,12 @@ public class WebSocketHandler {
 	private String getTextMessage(String message) {
 		Jsonizer json = new Jsonizer("b.marx981@gmail.com", "bmarx", controller.getReceivers());
 		return  json.getJsonObject(message).get("message").getAsString();
+	}
+	
+	private String extractMessage(String msg) {
+		JsonParser jp = new JsonParser();
+		JsonObject main = jp.parse(msg).getAsJsonObject();
+		return main.get("message").getAsString();
+		
 	}
 }

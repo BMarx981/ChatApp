@@ -14,7 +14,7 @@ public class Message {
         return content;
     }
 
-    public final void setContent(final String content) {
+    public final void setContent(String content) {
         this.content = content;
     }
 
@@ -22,7 +22,7 @@ public class Message {
         return sender;
     }
 
-    public final void setSender(final String sender) {
+    public final void setSender(String sender) {
         this.sender = sender;
     }
     
@@ -30,7 +30,7 @@ public class Message {
     	return this.email;
     }
     
-    public final void setEmail(final String email) {
+    public final void setEmail(String email) {
     	this.email = email;
     }
 

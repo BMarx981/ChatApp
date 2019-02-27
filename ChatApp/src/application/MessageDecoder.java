@@ -1,7 +1,5 @@
 package application;
 
-import java.util.Date;
-
 import javax.websocket.DecodeException;
 import javax.websocket.Decoder;
 import javax.websocket.EndpointConfig;
@@ -24,13 +22,14 @@ public class MessageDecoder implements Decoder.Text<Message> {
 	}
 	
 	@Override
-	public Message decode(final String textMessage) throws DecodeException {
+	public Message decode(String textMessage) throws DecodeException {
 		Message message = new Message();
 		JsonParser jp = new JsonParser();
         JsonObject jsonObject = jp.parse(textMessage).getAsJsonObject();
         message.setContent(jsonObject.get("message").getAsString());
         message.setSender(jsonObject.get("sender").getAsString());
-        message.setReceived(new Date());
+        message.setSender(jsonObject.get("username").getAsString());
+//        message.setReceived(new Date());
         return message;
 	}
 	

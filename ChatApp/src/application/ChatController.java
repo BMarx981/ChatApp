@@ -52,7 +52,7 @@ public class ChatController implements Initializable {
 		msg.setContent(textfield.getText());
 		msg.setEmail(email);
 		wsh.writeMessage(msg.getMessageAsString(textfield.getText()));
-		ta.setText(addTextToArea(textfield.getText(), ta.getText()));
+//		addTextToArea(textfield.getText(), ta.getText());
 		textfield.setText("");
 	}
 	
@@ -60,9 +60,9 @@ public class ChatController implements Initializable {
 		return receivers;
 	}
 	
-	public String addTextToArea(String text, String ta) {
-		StringBuilder sb = new StringBuilder(ta);
+	public void addTextToArea(String text, String str) {
+		StringBuilder sb = new StringBuilder(str);
 		sb.append(text).append("\n");
-		return sb.toString();
+		ta.setText(sb.toString());
 	}
 }
