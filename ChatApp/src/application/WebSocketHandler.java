@@ -71,15 +71,21 @@ public class WebSocketHandler {
 		return this.session;
 	}
 	
-	private String getTextMessage(String message) {
-		Jsonizer json = new Jsonizer("b.marx981@gmail.com", "bmarx", controller.getReceivers());
-		return  json.getJsonObject(message).get("message").getAsString();
-	}
-	
 	private String extractMessage(String msg) {
 		JsonParser jp = new JsonParser();
 		JsonObject main = jp.parse(msg).getAsJsonObject();
 		return main.get("message").getAsString();
-		
+	}
+	
+	private String extractUser(String msg) {
+		JsonParser jp = new JsonParser();
+		JsonObject main = jp.parse(msg).getAsJsonObject();
+		return main.get("username").getAsString();
+	}
+	
+	private String extractEmail(String msg) {
+		JsonParser jp = new JsonParser();
+		JsonObject main = jp.parse(msg).getAsJsonObject();
+		return main.get("email").getAsString();
 	}
 }

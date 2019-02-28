@@ -27,8 +27,6 @@ public class ChatController implements Initializable {
 	private String user;
 	private String email;
 	private ArrayList<String> receivers = new ArrayList<String>();
-	private ArrayList<String> groups;
-	private Session session;
 	
 	WebSocketHandler wsh;
 	Jsonizer json = new Jsonizer();
@@ -52,7 +50,6 @@ public class ChatController implements Initializable {
 		msg.setContent(textfield.getText());
 		msg.setEmail(email);
 		wsh.writeMessage(msg.getMessageAsString(textfield.getText()));
-//		addTextToArea(textfield.getText(), ta.getText());
 		textfield.setText("");
 	}
 	
