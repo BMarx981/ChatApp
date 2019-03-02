@@ -56,7 +56,9 @@ public class WebSocketHandler {
 
 	@OnMessage
 	public void receiveMessage(String str) {
-		controller.addTextToArea(extractMessage(str), controller.ta.getText());
+		String user = extractUser(str);
+		String email = extractEmail(str);
+		controller.addTextToArea(extractMessage(str), controller.tf.getText());
 	}
 	
 	public void writeMessage(String str) {

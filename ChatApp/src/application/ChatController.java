@@ -16,14 +16,13 @@ import javafx.scene.control.TextField;
 public class ChatController implements Initializable {
 
 	@FXML
-	TextArea ta = new TextArea();
+	TextArea tf = new TextArea();
 	@FXML
 	TextField textfield = new TextField();
 	@FXML
 	ListView<String> listView = new ListView<String>();
 	
 	private String user;
-	private String email;
 	private ArrayList<String> receivers = new ArrayList<String>();
 	
 	WebSocketHandler wsh;
@@ -33,20 +32,17 @@ public class ChatController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		 wsh = new WebSocketHandler(this);
-		 user = "aUser";
-		 email = "userEmail@gmail.com";
 		 receivers.add("usersFriend1");
 		 receivers.add("usersFriend2");
 		 receiversList.addAll(receivers);
 		 listView.setItems(receiversList);
-		 json.setEmail(email).setUserName(user).setReceivers(receivers);
+		 json.setUserName(user).setReceivers(receivers);
 	}
 
 	public void enterPressed(ActionEvent e) {
 		Message msg = new Message();
 		msg.setSender(user);
 		msg.setContent(textfield.getText());
-		msg.setEmail(email);
 		wsh.writeMessage(msg.getMessageAsString(textfield.getText()));
 		textfield.setText("");
 	}
@@ -58,6 +54,14 @@ public class ChatController implements Initializable {
 	public void addTextToArea(String text, String str) {
 		StringBuilder sb = new StringBuilder(str);
 		sb.append(text).append("\n");
-		ta.setText(sb.toString());
+		tf.setText(sb.toString());
+	}
+	
+	public void setUserName(String name) {
+		this.user = name;
+	}
+	
+	public String getUserName() {
+		return user;
 	}
 }

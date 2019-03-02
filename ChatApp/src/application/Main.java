@@ -11,12 +11,12 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/application/ChatScene.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/application/Login.fxml"));
 			root.getStylesheets().add("application/application.css");
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.setOpacity(0.98);
-			primaryStage.setTitle("ChatApp");
+			primaryStage.setTitle("Login");
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch(Exception e) {

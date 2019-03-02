@@ -7,7 +7,6 @@ public class Message {
 
     private String content;
     private String sender;
-    private String email;
     private Date received;
 
     public final String getContent() {
@@ -25,14 +24,6 @@ public class Message {
     public final void setSender(String sender) {
         this.sender = sender;
     }
-    
-    public final String getEmail() {
-    	return this.email;
-    }
-    
-    public final void setEmail(String email) {
-    	this.email = email;
-    }
 
     public final Date getReceived() {
         return received;
@@ -43,7 +34,7 @@ public class Message {
     }
     
     public String getMessageAsString(String text) {
-    	Jsonizer json = new Jsonizer(email, sender, new ArrayList<String>());
+    	Jsonizer json = new Jsonizer(sender, new ArrayList<String>());
     	return json.getJsonAsString(text);
     }
 }
