@@ -6,14 +6,19 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="469.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ChatController">
+<AnchorPane prefHeight="469.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <TextField fx:id="textfield" alignment="TOP_LEFT" layoutX="14.0" layoutY="403.0" onAction="#enterPressed" prefHeight="54.0" prefWidth="534.0" promptText="Enter message">
          <cursor>
             <Cursor fx:constant="TEXT" />
          </cursor>
       </TextField>
-      <TextArea fx:id="ta" layoutX="14.0" layoutY="28.0" prefHeight="365.0" prefWidth="395.0" />
       <ListView fx:id="listView" layoutX="419.0" layoutY="28.0" prefHeight="365.0" prefWidth="127.0" />
+      <TableView layoutX="14.0" layoutY="28.0" prefHeight="365.0" prefWidth="397.0" AnchorPane.bottomAnchor="76.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="148.0" AnchorPane.topAnchor="28.0">
+        <columns>
+          <TableColumn prefWidth="325.0" text="Message" />
+          <TableColumn prefWidth="75.0" text="Info" />
+        </columns>
+      </TableView>
    </children>
 </AnchorPane>

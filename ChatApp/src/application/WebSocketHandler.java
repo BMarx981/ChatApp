@@ -57,8 +57,11 @@ public class WebSocketHandler {
 	@OnMessage
 	public void receiveMessage(String str) {
 		String user = extractUser(str);
-		String email = extractEmail(str);
-		controller.addTextToArea(extractMessage(str), controller.tf.getText());
+		String msg = extractMessage(str);
+		Message m = new Message();
+		m.setUser(user);
+		m.setMessage(msg);
+		controller.addTextToTable(m);
 	}
 	
 	public void writeMessage(String str) {
@@ -83,11 +86,5 @@ public class WebSocketHandler {
 		JsonParser jp = new JsonParser();
 		JsonObject main = jp.parse(msg).getAsJsonObject();
 		return main.get("username").getAsString();
-	}
-	
-	private String extractEmail(String msg) {
-		JsonParser jp = new JsonParser();
-		JsonObject main = jp.parse(msg).getAsJsonObject();
-		return main.get("email").getAsString();
 	}
 }

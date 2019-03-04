@@ -18,7 +18,6 @@ public class LoginController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 	}
 	
 	@FXML TextField userNameField = new TextField();
@@ -30,28 +29,28 @@ public class LoginController implements Initializable {
 	
 	public void userNameEntered(ActionEvent e) {
 		userName = userNameField.getText();
+		passwordField.requestFocus();
 	}
 	
 	public void passwordEntered(ActionEvent e) {
 		password = passwordField.getText();
+		loginButton.requestFocus();
 	}
 	
 	public void loginPressed(ActionEvent e) {
 		try {
-
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/application/ChatController.fxml"));
+			ChatController cc = new ChatController();
+			cc.setUserName(userName);
+			loader.setLocation(getClass().getResource("/application/ChatScene.fxml"));
+			loader.setController(cc);
 			Parent r = loader.load();
 			r.getStylesheets().add("application/application.css");
 			Scene next = new Scene(r);
-			ChatController cc = new ChatController();
-			cc.setUserName(userName);
-			
 			Stage stage = (Stage) loginButton.getScene().getWindow();
 			stage.setScene(next);
 			stage.setTitle("Chattr");
 			stage.show();
-
 		} catch (Exception ex) {
 			System.out.println("scene fail");
 			ex.printStackTrace();

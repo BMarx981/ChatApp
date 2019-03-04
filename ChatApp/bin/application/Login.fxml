@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.StackPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="278.0" prefWidth="521.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
+   <children>
+      <Label layoutX="116.0" layoutY="14.0" prefHeight="55.0" prefWidth="290.0" text="Login to Chattr">
+         <font>
+            <Font name="Avenir Black" size="38.0" />
+         </font>
+      </Label>
+      <TextField fx:id="userNameField" layoutX="120.0" layoutY="97.0" onAction="#userNameEntered" prefHeight="27.0" prefWidth="275.0" promptText="Enter your user name" AnchorPane.bottomAnchor="154.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="97.0" />
+      <PasswordField fx:id="passwordField" layoutX="120.0" layoutY="159.0" onAction="#passwordEntered" prefHeight="27.0" prefWidth="275.0" promptText="Enter you Password" AnchorPane.bottomAnchor="92.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="159.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="80.0" prefHeight="17.0" prefWidth="99.0" text="User Name" AnchorPane.bottomAnchor="181.0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="211.0" AnchorPane.topAnchor="80.0" />
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="211.0" layoutY="139.0" prefHeight="17.0" prefWidth="99.0" text="Password" AnchorPane.bottomAnchor="122.0" AnchorPane.leftAnchor="211.0" AnchorPane.rightAnchor="211.0" AnchorPane.topAnchor="139.0" />
+      <Button fx:id="loginButton" layoutX="120.0" layoutY="222.0" mnemonicParsing="false" onAction="#loginPressed" prefHeight="27.0" prefWidth="275.0" text="Login" AnchorPane.bottomAnchor="29.0" AnchorPane.leftAnchor="120.0" AnchorPane.rightAnchor="126.0" AnchorPane.topAnchor="222.0" />
+   </children>
+</AnchorPane>
