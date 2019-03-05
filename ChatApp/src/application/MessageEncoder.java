@@ -23,8 +23,8 @@ public class MessageEncoder implements Encoder.Text<Message> {
 	@Override
     public String encode(final Message message) throws EncodeException {
 		JsonObject obj = new JsonObject();
-		obj.addProperty("message", message.getContent());
-		obj.addProperty("sender", message.getSender());
+		obj.addProperty("message", message.getMessage());
+		obj.addProperty("username", message.getUser());
         return obj.getAsString();
     }
 

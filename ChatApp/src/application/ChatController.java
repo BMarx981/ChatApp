@@ -13,7 +13,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ChatController implements Initializable {
 
@@ -38,19 +37,17 @@ public class ChatController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		 wsh = new WebSocketHandler(this);
-		 msgCol.setCellValueFactory(new PropertyValueFactory<Message,String>("Message"));
+		 tv.setItems(messages);
+		 msgCol.setCellValueFactory(cellData -> cellData.getValue().msgProperty());
 		 receivers.add("usersFriend1");
 		 receivers.add("usersFriend2");
 		 receiversList.addAll(receivers);
 		 listView.setItems(receiversList);
 		 json.setUserName(user).setReceivers(receivers);
-		 tv.setItems(messages);
 	}
 
 	public void enterPressed(ActionEvent e) {
 		Message msg = new Message();
-//		msg.setSender(user);
-//		msg.setContent(textfield.getText());
 		msg.setUser(user);
 		msg.setMessage(textfield.getText());
 		wsh.writeMessage(msg.getMessageAsString(textfield.getText()));

@@ -26,10 +26,8 @@ public class MessageDecoder implements Decoder.Text<Message> {
 		Message message = new Message();
 		JsonParser jp = new JsonParser();
         JsonObject jsonObject = jp.parse(textMessage).getAsJsonObject();
-        message.setContent(jsonObject.get("message").getAsString());
-        message.setSender(jsonObject.get("sender").getAsString());
-        message.setSender(jsonObject.get("username").getAsString());
-//        message.setReceived(new Date());
+        message.setMessage(jsonObject.get("message").getAsString());
+        message.setUser(jsonObject.get("username").getAsString());
         return message;
 	}
 	
