@@ -56,15 +56,11 @@ public class WebSocketHandler {
 
 	@OnMessage
 	public void receiveMessage(String str) {
-		String user = extractUser(str);
-		String msg = extractMessage(str);
-		Message m = new Message();
-		m.setUser(user);
-		m.setMessage(msg);
-		controller.addTextToTable(m);
+		controller.addTextToTable(new Message(extractMessage(str), extractUser(str)));
 	}
 	
 	public void writeMessage(String str) {
+		System.out.println(str);
 		try {
 			session.getBasicRemote().sendText(str);
 		} catch (IOException e) {

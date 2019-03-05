@@ -8,8 +8,14 @@ import javafx.beans.property.StringProperty;
 
 public class Message {
 
-    private final SimpleStringProperty msg = new SimpleStringProperty();
-    private final SimpleStringProperty user = new SimpleStringProperty();
+    private SimpleStringProperty msg = new SimpleStringProperty();
+    private SimpleStringProperty user = new SimpleStringProperty();
+    
+    public Message() {}
+    public Message(String message, String userName) {
+    	msg = new SimpleStringProperty(message);
+    	user = new SimpleStringProperty(userName);
+    }
 
     public StringProperty msgProperty() { return msg; }
     public String getMessage() { return msg.get(); }

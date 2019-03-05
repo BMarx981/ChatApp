@@ -10,16 +10,10 @@ import com.google.gson.JsonParser;
 public class MessageDecoder implements Decoder.Text<Message> {
 
 	@Override
-	public void init(EndpointConfig config) {
-		// TODO Auto-generated method stub
-
-	}
+	public void init(EndpointConfig config) {}
 
 	@Override
-	public void destroy() {
-		// TODO Auto-generated method stub
-
-	}
+	public void destroy() {}
 	
 	@Override
 	public Message decode(String textMessage) throws DecodeException {
@@ -35,10 +29,4 @@ public class MessageDecoder implements Decoder.Text<Message> {
 	public boolean willDecode(final String s) {
 		return true;
 	}
-	
-	public String decodeAsString(String text) throws DecodeException {
-		String strObj = decode(text).toString();
-		return strObj;
-	}
-
 }

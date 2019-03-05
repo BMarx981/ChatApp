@@ -21,6 +21,8 @@ public class ChatController implements Initializable {
 	@FXML
 	TableColumn<Message, String> msgCol = new TableColumn<Message, String>();
 	@FXML
+	TableColumn<Message, String> infoCol = new TableColumn<Message, String>();
+	@FXML
 	TextField textfield = new TextField();
 	@FXML
 	ListView<String> listView = new ListView<String>();
@@ -39,6 +41,7 @@ public class ChatController implements Initializable {
 		 wsh = new WebSocketHandler(this);
 		 tv.setItems(messages);
 		 msgCol.setCellValueFactory(cellData -> cellData.getValue().msgProperty());
+		 infoCol.setCellValueFactory(cellData -> cellData.getValue().userProperty());
 		 receivers.add("usersFriend1");
 		 receivers.add("usersFriend2");
 		 receiversList.addAll(receivers);
@@ -60,7 +63,6 @@ public class ChatController implements Initializable {
 	
 	public void addTextToTable(Message m) {
 		messages.add(m);
-		tv.refresh();
 	}
 	
 	public void setUserName(String name) {
