@@ -28,14 +28,13 @@ public class ChatController implements Initializable {
 	ListView<String> listView = new ListView<String>();
 	@FXML 
 	public ObservableList<Message> messages = FXCollections.observableArrayList();
-	
-	public String user;
+	private String user = new String();
 	private ArrayList<String> receivers = new ArrayList<String>();
 	ObservableList<String> receiversList = FXCollections.observableArrayList();
 	
 	WebSocketHandler wsh;
 	Jsonizer json = new Jsonizer();
-
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		 wsh = new WebSocketHandler(this);

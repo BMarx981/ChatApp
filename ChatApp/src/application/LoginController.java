@@ -12,12 +12,30 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Stage;
 
 public class LoginController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		loginButton.setOnKeyPressed(event -> {
+			if(event.getCode() == KeyCode.ENTER && loginButton.isFocused()) {
+				loginPressed(null);
+			}
+		});
+		
+		userNameField.setOnKeyPressed(event -> {
+			if(event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.TAB) {
+				 setUserName();
+			}
+		});
+		
+		passwordField.setOnKeyPressed(event -> {
+			if(event.getCode() == KeyCode.ENTER || event.getCode() == KeyCode.TAB) {
+				 passwordEntered(null);
+			}
+		});
 	}
 	
 	@FXML TextField userNameField = new TextField();
@@ -27,6 +45,9 @@ public class LoginController implements Initializable {
 	private String userName = new String();
 	private String password = new String();
 	
+	private void setUserName() {
+		this.userName = userNameField.getText();
+	}
 	public void userNameEntered(ActionEvent e) {
 		userName = userNameField.getText();
 		passwordField.requestFocus();
@@ -39,12 +60,10 @@ public class LoginController implements Initializable {
 	
 	public void loginPressed(ActionEvent e) {
 		try {
-			FXMLLoader loader = new FXMLLoader();
-			ChatController cc = new ChatController();
-			cc.setUserName(userName);
-			loader.setLocation(getClass().getResource("/application/ChatScene.fxml"));
-			loader.setController(cc);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/ChatScene.fxml"));
 			Parent r = loader.load();
+			ChatController cc = loader.<ChatController>getController();
+			cc.setUserName(userName);
 			r.getStylesheets().add("application/application.css");
 			Scene next = new Scene(r);
 			Stage stage = (Stage) loginButton.getScene().getWindow();

@@ -60,7 +60,6 @@ public class WebSocketHandler {
 	}
 	
 	public void writeMessage(String str) {
-		System.out.println(str);
 		try {
 			session.getBasicRemote().sendText(str);
 		} catch (IOException e) {
